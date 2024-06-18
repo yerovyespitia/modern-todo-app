@@ -19,6 +19,10 @@ const fakeExpenses: Expense[] = [
 ]
 
 export const expensesRoute = new Hono()
+  .get('/total-spent', (c) => {
+    const total = fakeExpenses.reduce((acc, expense) => acc + expense.amount, 0)
+    return c.json({ total })
+  })
   .get('/', (c) => {
     return c.json({ exponses: fakeExpenses })
   })
