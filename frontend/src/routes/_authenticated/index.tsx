@@ -9,7 +9,7 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/_authenticated/')({
   component: Index,
 })
 
@@ -27,8 +27,6 @@ function Index() {
     queryKey: ['get-total-spent'],
     queryFn: getTotalSpent,
   })
-
-  if (isPending) return 'Loading...'
 
   if (error) return 'An error has occured: ' + error.message
 
